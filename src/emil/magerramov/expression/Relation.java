@@ -1,5 +1,12 @@
 package emil.magerramov.expression;
 
+import emil.magerramov.evaluation.Result;
+import emil.magerramov.exception.EvaluationException;
+import emil.magerramov.util.Evaluator;
+
+import java.util.Objects;
+import java.util.function.BiFunction;
+
 /**
  * Created by lemhell on 02.09.16.
  */
@@ -25,6 +32,34 @@ public class Relation extends Expression {
             return "Relation(" + left + " " + codeToString(code) + " " + right + ")";
         } else {
             return "Relation(" + left + ")";
+        }
+    }
+
+    public Result eval() throws EvaluationException {
+        if (right == null) {
+            throw new EvaluationException("Can not evaluate null");
+        }
+        switch (code) {
+            case Less: return Evaluator.evaluateWithCheckFloatToBool(left, right, (a, b) -> a < b);
+            case LessEq: return Evaluator.evaluateWithCheckFloatToBool(left, right, (a, b) -> a <= b);
+            case Greater: return Evaluator.evaluateWithCheckFloatToBool(left, right, (a, b) -> a > b);
+            case GreaterEq: return Evaluator.evaluateWithCheckFloatToBool(left, right, (a, b) -> a >= b);
+            case Equal: {
+                if (left.eval().getCode() == Result.ResultCode.Boolean) {
+                    return Evaluator.evaluateWithCheckBoolToBool(left, right, (a, b) -> a == b);
+                } else {
+                    return Evaluator.evaluateWithCheckFloatToBool(left, right, Objects::equals);
+                }
+            }
+            case NotEq: {
+                if (left.eval().getCode() == Result.ResultCode.Boolean) {
+                    return Evaluator.evaluateWithCheckBoolToBool(left, right, (a, b) -> a != b);
+                } else {
+                    return Evaluator.evaluateWithCheckFloatToBool(left, right, (a, b) -> !Objects.equals(a, b));
+                }
+            }
+            case None: return left.eval();
+            default:   return left.eval();
         }
     }
 

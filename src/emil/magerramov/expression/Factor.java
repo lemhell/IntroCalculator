@@ -1,5 +1,9 @@
 package emil.magerramov.expression;
 
+import emil.magerramov.evaluation.Result;
+import emil.magerramov.exception.EvaluationException;
+import emil.magerramov.util.Evaluator;
+
 /**
  * Created by lemhell on 02.09.16.
  */
@@ -25,6 +29,15 @@ public class Factor extends Expression {
             return "Factor(" + left + " " + codeToString(code) + " " + right + ")";
         } else {
             return "Factor(" + left + ")";
+        }
+    }
+
+    public Result eval() throws EvaluationException {
+        switch (code) {
+            case Multiply:  return Evaluator.evaluateWithCheckFloatToFloat(left, right, (a, b) -> a * b);
+            case Divide:    return Evaluator.evaluateWithCheckFloatToFloat(left, right, (a, b) -> a / b);
+            case None:      return left.eval();
+            default:        return left.eval();
         }
     }
 

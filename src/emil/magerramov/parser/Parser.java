@@ -39,6 +39,8 @@ public class Parser {
     }
 
     private Expression parseRelation() throws Exception {
+        // TODO: Should do smth with more than one consecutive relation
+        // (should be an error)
         Expression term = parseTerm();
         Relation.OpCode code = Relation.OpCode.None;
         if (searchFor("<")) code = Relation.OpCode.Less;

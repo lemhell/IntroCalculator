@@ -1,5 +1,9 @@
 package emil.magerramov.expression;
 
+import emil.magerramov.evaluation.Result;
+import emil.magerramov.exception.EvaluationException;
+import emil.magerramov.util.Evaluator;
+
 /**
  * Created by lemhell on 02.09.16.
  */
@@ -25,6 +29,16 @@ public class Logical extends Expression {
             return "Logical(" + left + " " + codeToString(code) + " " + right + ")";
         } else {
             return "Logical(" + left + ")";
+        }
+    }
+
+    public Result eval() throws EvaluationException {
+        switch (code) {
+            case And: return Evaluator.evaluateWithCheckBoolToBool(left, right, (a, b) -> a && b);
+            case Or:  return Evaluator.evaluateWithCheckBoolToBool(left, right, (a, b) -> a || b);
+            case Xor: return Evaluator.evaluateWithCheckBoolToBool(left, right, (a, b) -> a  ^ b);
+            case None:return left.eval();
+            default:  return left.eval();
         }
     }
 

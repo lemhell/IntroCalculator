@@ -1,5 +1,8 @@
 package emil.magerramov.expression;
 
+import emil.magerramov.evaluation.Result;
+import emil.magerramov.exception.EvaluationException;
+
 /**
  * Created by lemhell on 02.09.16.
  */
@@ -14,8 +17,8 @@ public class ParenthesizedPrimary extends Primary {
         return expression;
     }
 
-    public void setExpression(Expression expression) {
-        this.expression = expression;
+    public Result eval() throws EvaluationException {
+        return expression.eval();
     }
 
     public String toString() {
