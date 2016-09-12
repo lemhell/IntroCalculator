@@ -20,10 +20,6 @@ public class Expression {
         return value;
     }
 
-    public void setValue(Logical value) {
-        this.value = value;
-    }
-
     public String toString() {
         return value.toString();
     }

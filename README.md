@@ -10,6 +10,7 @@ This is a simple calculator, which parses input string and evaluates it.
  * Added Evaluator, which tries to evaluate the expression, parsed by parser
  * Added Result class, which holds either float, or boolean
  * Added EvaluationException
+ * Reading of the expression from the terminal
 
 ### 0.1.0 (03.09.16)
 

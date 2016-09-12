@@ -41,30 +41,6 @@ public class Term extends Expression {
         }
     }
 
-    public OpCode getCode() {
-        return code;
-    }
-
-    public void setCode(OpCode code) {
-        this.code = code;
-    }
-
-    public Expression getLeft() {
-        return left;
-    }
-
-    public void setLeft(Factor left) {
-        this.left = left;
-    }
-
-    public Expression getRight() {
-        return right;
-    }
-
-    public void setRight(Factor right) {
-        this.right = right;
-    }
-
     private String codeToString(OpCode code) {
         switch (code) {
             case Plus: return "+";

@@ -23,24 +23,12 @@ public class Result {
         return floatResult;
     }
 
-    public void setFloatResult(float floatResult) {
-        this.floatResult = floatResult;
-    }
-
     public boolean getBoolResult() {
         return boolResult;
     }
 
-    public void setBoolResult(boolean boolResult) {
-        this.boolResult = boolResult;
-    }
-
     public ResultCode getCode() {
         return code;
-    }
-
-    public void setCode(ResultCode code) {
-        this.code = code;
     }
 
     public String toString() {

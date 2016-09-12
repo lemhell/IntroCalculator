@@ -12,14 +12,6 @@ public class IntegerPrimary extends Primary {
         this.intValue = value;
     }
 
-    public long getIntValue() {
-        return intValue;
-    }
-
-    public void setValue(int value) {
-        this.intValue = value;
-    }
-
     public String toString() {
         return "Integer(" + intValue + ")";
     }
