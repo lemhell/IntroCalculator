@@ -26,6 +26,7 @@ public class Main {
                             expr = parser.parse();
                             System.out.println(expr);
                             System.out.println("Result is: " + expr.eval());
+                            System.out.println(expr.serialize());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

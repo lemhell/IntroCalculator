@@ -5,6 +5,12 @@ This is a simple calculator, which parses input string and evaluates it.
 
 ## Changelog:
 
+### 0.3.0 (14.09.16)
+
+ * Added Serializable interface, serialization of the AST
+ * Pretty printing of the serialized AST in the terminal
+ * Small bugfixes
+
 ### 0.2.0 (12.09.16)
 
  * Added Evaluator, which tries to evaluate the expression, parsed by parser

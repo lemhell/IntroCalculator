@@ -39,20 +39,18 @@ public class Parser {
     }
 
     private Expression parseRelation() throws Exception {
-        // TODO: Should do smth with more than one consecutive relation
-        // (should be an error)
         Expression term = parseTerm();
         Relation.OpCode code = Relation.OpCode.None;
-        if (searchFor("<")) code = Relation.OpCode.Less;
-        else if (searchFor("<=")) code = Relation.OpCode.LessEq;
-        else if (searchFor(">")) code = Relation.OpCode.Greater;
+        if (searchFor("<=")) code = Relation.OpCode.LessEq;
         else if (searchFor(">=")) code = Relation.OpCode.GreaterEq;
+        else if (searchFor("<")) code = Relation.OpCode.Less;
+        else if (searchFor(">")) code = Relation.OpCode.Greater;
         else if (searchFor("==")) code = Relation.OpCode.Equal;
         else if (searchFor("!=")) code = Relation.OpCode.NotEq;
         if (code == Relation.OpCode.None) {
             return term;
         } else {
-            return new Relation(code, term, parseTerm());
+            return new Relation(code, term, parseRelation());
         }
     }
 

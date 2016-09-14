@@ -3,6 +3,7 @@ package emil.magerramov.expression;
 import emil.magerramov.evaluation.Result;
 import emil.magerramov.exception.EvaluationException;
 import emil.magerramov.util.Evaluator;
+import emil.magerramov.util.Util;
 
 /**
  * Created by lemhell on 02.09.16.
@@ -39,6 +40,17 @@ public class Factor extends Expression {
             case None:      return left.eval();
             default:        return left.eval();
         }
+    }
+
+    @Override
+    public String serialize(int level) {
+        String tab = Util.tab(level);
+        return "{\n" +
+               tab +  "\"type\": \"Factor\",\n" +
+               tab +  "\"code\": \"" + codeToString(code) + "\",\n" +
+               tab +  "\"left\": " + left.serialize(level + 1) + "," +
+               "\n" + tab + "\"right\": " + right.serialize(level + 1) +
+                "\n" + Util.tab(level - 1) +  "}";
     }
 
     private String codeToString(OpCode code) {
